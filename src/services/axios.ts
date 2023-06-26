@@ -1,7 +1,7 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 import { scopes, msalInstance } from "./msal";
 
-const instance = axios.create({
+const instance: AxiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 });
 

@@ -3,7 +3,7 @@ import { RedirectRequest } from "@azure/msal-browser";
 
 const clientId = process.env.REACT_APP_CLIENT_ID;
 const tenantId = process.env.REACT_APP_TENANT_ID;
-const scopes = process.env.REACT_APP_API_SCOPES;
+const scopesString = process.env.REACT_APP_API_SCOPES;
 
 if (!clientId) {
   throw new Error("Missing client ID");
@@ -11,7 +11,7 @@ if (!clientId) {
 if (!tenantId) {
   throw new Error("Missing tenant ID");
 }
-if (!scopes) {
+if (!scopesString) {
   throw new Error("Missing API scopes");
 }
 const msalConfig = {
@@ -21,8 +21,9 @@ const msalConfig = {
   },
 };
 
+const scopes = scopesString.split(" ");
 const loginRequest: RedirectRequest = {
-  scopes: scopes.split(" "),
+  scopes,
 };
 
 const msalInstance = new msal.PublicClientApplication(msalConfig);
